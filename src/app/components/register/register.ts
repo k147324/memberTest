@@ -11,16 +11,16 @@ import { register } from 'module';
   styleUrl: './register.css',
 })
 export class Register {
-  constructor(private http:HttpClient){}
-  baseURL: string = 'https://localhost:7058';
+  constructor(private http: HttpClient) {}
+  baseURL: string = 'https://localhost:7058/api';
   private fb = inject(FormBuilder);
-  registerData = this.fb.group({
-    username: ['', Validators.required],
-    password: ['', Validators.required],
-    email: ['', Validators.required],
-    phone: ['', [Validators.required, Validators.pattern('^09[0-9]{8}$')]],
-    address: ['',[Validators.required]],
-    idnum: ['', [Validators.required, Validators.pattern('^[A-Z][1289]\d{8}$')]],
+  registerData = this.fb.nonNullable.group({
+    fUserName: ['', Validators.required],
+    fPassword: ['', Validators.required],
+    fEmail: ['', Validators.required],
+    fPhone: ['', [Validators.required, Validators.pattern('^09[0-9]{8}$')]],
+    fAddress: ['', [Validators.required]],
+    fIdNum: ['', [Validators.required, Validators.pattern(/^[A-Z][1289]\d{8}$/)]],
   });
 
   Register() {
@@ -28,7 +28,18 @@ export class Register {
       this.registerData.markAllAsTouched();
       return;
     }
-    this.http.post(this.baseURL+"/register",)
-    //this.http.post<Any[]>(this.baseURL + "/register");
+
+    const data: UserRegisterDTO = this.registerData.getRawValue();
+
+    console.log('送出的資料：', data);
+
+    this.http.post('https://localhost:7058/api/UserAPI/Register', data).subscribe({
+      next: (response) => {
+        console.log('API 回傳：', response);
+      },
+      error: (error) => {
+        console.error('API 錯誤：', error);
+      },
+    });
   }
 }

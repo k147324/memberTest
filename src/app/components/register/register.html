@@ -8,7 +8,7 @@
           <form [formGroup]="registerData" (ngSubmit)="Register()">
             <div class="mb-3">
               <label for="username" class="form-label">用戶名</label>
-              <input class="form-control" id="username" formControlName="username" />
+              <input class="form-control" id="username" formControlName="fUserName" />
             </div>
 
             <div class="mb-3">
@@ -17,27 +17,27 @@
                 type="password"
                 class="form-control"
                 id="password"
-                formControlName="password"
+                formControlName="fPassword"
               />
             </div>
 
             <div class="mb-3">
               <label for="email" class="form-label">Email</label>
-              <input type="email" class="form-control" id="email" formControlName="email" />
+              <input type="email" class="form-control" id="email" formControlName="fEmail" />
             </div>
 
             <div class="mb-3">
               <label for="phone" class="form-label">手機號碼</label>
-              <input class="form-control" id="phone" formControlName="phone" />
+              <input class="form-control" id="phone" formControlName="fPhone" />
             </div>
             <div class="mb-3">
               <label for="address" class="form-label">地址</label>
-              <input class="form-control" id="address" formControlName="address" />
+              <input class="form-control" id="address" formControlName="fAddress" />
             </div>
 
             <div class="mb-3">
               <label for="idnum" class="form-label">身分證字號</label>
-              <input class="form-control" id="idnum" formControlName="idnum" />
+              <input class="form-control" id="idnum" formControlName="fIdNum" />
             </div>
 
             <div class="mb-3">

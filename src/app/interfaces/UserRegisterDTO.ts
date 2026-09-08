@@ -1,8 +1,8 @@
-export interface UserRegisterDTO{
-  username: string,
-  password: string,
-  email: string,
-  phone: string,
-  address: string,
-  idnum:string,
+export interface UserRegisterDTO {
+  fUserName: string;
+  fPassword: string;
+  fEmail: string;
+  fPhone: string;
+  fAddress: string;
+  fIdNum: string;
 }

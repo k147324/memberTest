@@ -22,7 +22,7 @@ export class Register {
     fAddress: ['', [Validators.required]],
     fIdNum: ['', [Validators.required, Validators.pattern(/^[A-Z][1289]\d{8}$/)]],
   });
-
+  errorMsg: string = "";
   Register() {
     if (this.registerData.invalid) {
       this.registerData.markAllAsTouched();
@@ -33,13 +33,15 @@ export class Register {
 
     console.log('送出的資料：', data);
 
-    this.http.post('https://localhost:7058/api/UserAPI/Register', data).subscribe({
+    this.http.post(this.baseURL+'/UserAPI/Register', data).subscribe({
       next: (response) => {
         console.log('API 回傳：', response);
       },
       error: (error) => {
         console.error('API 錯誤：', error);
+        this.errorMsg = error.error?.message
       },
     });
+    
   }
 }

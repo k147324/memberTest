@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { log } from 'console';
 import { HttpClient } from '@angular/common/http';
+import { UserInfoDTO } from '../../interfaces/UserInfoDTO';
 @Component({
   selector: 'app-login',
   imports: [FormsModule],
@@ -15,19 +16,15 @@ export class Login {
   loginData = { username: '', password: '' };
   errorMessage = '';
   login() {
-    const payload = {
-      userName: this.loginData.username,
-      email: null,
-      password: this.loginData.password,
-    };
-    this.http.post<any>(`${this.baseURL}/UserAPI/Login`, payload).subscribe({
+    let data: UserInfoDTO = {
+      Username: this.loginData.username,
+      Password: this.loginData.password,
+      Email:'',
+    }
+    this.http.post<any>(`${this.baseURL}/UserAPI/Login`, data).subscribe({
       next: (res) => {
         console.log('登入成功', res);
-        console.log('Token:', res.token); // 先在 console 看 token 長什麼樣子
-
-        // 之後要記得存起來,這裡先簡單測試
-        //localStorage.setItem('token', res.token);
-
+        console.log('Token:', res.token);
         this.errorMessage = '';
       },
       error: (err) => {

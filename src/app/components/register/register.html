@@ -39,7 +39,11 @@
               <label for="idnum" class="form-label">身分證字號</label>
               <input class="form-control" id="idnum" formControlName="fIdNum" />
             </div>
-
+            @if (errorMsg) {
+              <div class="alert alert-danger">
+                {{ errorMsg }}
+              </div>
+            }
             <div class="mb-3">
               <button type="submit" class="btn btn-primary w-100">註冊</button>
             </div>
